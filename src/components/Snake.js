@@ -8,13 +8,12 @@ export default (props) => {
           left: `${dot[0]}%`,
           top: `${dot[1]}%`,
           position: 'absolute',
-          width: '2%',
-          height: '2%',
-          backgroundColor: 'red',
-          border: '1px solid #fff',
+          width: '8%',
+          height: '8%',
+          backgroundColor: props.color,
           zIndex: '2'
         }
-        return <div style={{}} key={i} style={style}></div>
+        return <div key={i} style={style}></div>
       })}
     </div>
   )

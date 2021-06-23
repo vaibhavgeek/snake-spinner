@@ -1,34 +1,48 @@
 import React, { Component } from 'react'
 import Snake from './components/Snake'
 import Food from './components/Food'
+import Container from './components/Container'
 
 const getRandomCoordinates = () => {
   let min = 1
   let max = 98
-  let x = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2
-  let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2
+  //let x = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2
+  //let y = Math.floor((Math.random() * (max - min + 1) + min) / 2) * 2
+  let x = 10
+  let y = 16
   return [x, y]
 }
 
 const initialState = {
   food: getRandomCoordinates(),
-  speed: 200,
+  speed: 60,
   direction: 'RIGHT',
   snakeDots: [
     [0, 0],
-    [2, 0]
+    [0, 1],
+    [0, 2],
+    [0, 3],
+    [0, 4],
+    [0, 5],
+    [0, 6],
+    [0, 7],
+    [0, 8],
+    [0, 9],
+    [0, 10],
+    [0, 11],
   ]
 }
 
 class App extends Component {
   state = initialState
-
   componentDidMount() {
+    console.log(this.props)
     setInterval(this.moveSnake, this.state.speed)
     document.onkeydown = this.onKeyDown
   }
 
   componentDidUpdate() {
+    console.log(this.state.snakeDots)
     this.checkIfOutOfBorders()
     this.checkIfCollapsed()
     this.checkIfEat()
@@ -58,16 +72,16 @@ class App extends Component {
 
     switch (this.state.direction) {
       case 'RIGHT':
-        head = [head[0] + 2, head[1]]
+        head = [head[0] + 4, head[1]]
         break
       case 'LEFT':
-        head = [head[0] - 2, head[1]]
+        head = [head[0] - 4, head[1]]
         break
       case 'DOWN':
-        head = [head[0], head[1] + 2]
+        head = [head[0], head[1] + 4]
         break
       case 'UP':
-        head = [head[0], head[1] - 2]
+        head = [head[0], head[1] - 4]
         break
     }
     dots.push(head)
@@ -98,7 +112,9 @@ class App extends Component {
   checkIfEat() {
     let head = this.state.snakeDots[this.state.snakeDots.length - 1]
     let food = this.state.food
+
     if (head[0] === food[0] && head[1] === food[1]) {
+      alert("eaten")
       this.setState({
         food: getRandomCoordinates()
       })
@@ -118,7 +134,7 @@ class App extends Component {
   increaseSpeed() {
     if (this.state.speed > 10) {
       this.setState({
-        speed: this.state.speed - 20
+        speed: this.state.speed - 10
       })
     }
   }
@@ -132,15 +148,16 @@ class App extends Component {
     return (
       <div
         style={{
+          margin: '10px auto',
           position: 'relative',
-          margin: '50px auto',
-          width: '600px',
-          height: '600px',
-          border: '2px solid #000'
+          width: this.props.size,
+          height: this.props.size,
+          backgroundColor: this.props.bgColor,
+          borderRadius: this.props.borderRadius
         }}
       >
-        <Snake snakeDots={this.state.snakeDots} />
-        <Food color='red' dot={this.state.food} />
+        <Snake color={this.props.color} snakeDots={this.state.snakeDots} />
+        <Food color={this.props.color} color={this.props.color} dot={this.state.food} />
       </div>
     )
   }

@@ -1,10 +1,9 @@
 import React from 'react'
 
 import SnakeLoader from 'snake-spinner'
-import 'snake-spinner/dist/index.css'
 
 const App = () => {
-  return <SnakeLoader />
+  return <SnakeLoader size="80px" borderRadius="10px" color="white" bgColor="black" onClose={() => alert("game quit!")} />
 }
 
 export default App

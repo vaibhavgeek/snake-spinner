@@ -6,10 +6,9 @@ export default (props) => {
     left: `${props.dot[0]}%`,
     top: `${props.dot[1]}%`,
     position: "absolute",
-    width: "2%",
-    height: "2%",
+    width: "8%",
+    height: "8%",
     background: `${props.color}`,
-    border: `1px solid #fff`,
     zIndex: "1",
   }
 
