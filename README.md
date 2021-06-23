@@ -26,9 +26,9 @@ class Example extends Component {
 ```
 
 ## To Complete Things
-[.] Create game as component
-[ ] Allows Props to set the loder style 
-[ ] On Game Complete check if loading is finished, if so load content otherwise continue game. 
+- [x] Create game as component
+- [ ] Allows Props to set the loder style
+- [ ] On Game Complete check if loading is finished, if so load content otherwise continue game. 
 
 ## License
 
